@@ -1,8 +1,8 @@
 ﻿namespace ConsoleExperiment;
 
-internal class Program
+internal static class Program
 {
-	static void Main(string[] args)
+	public static void Main(string[] args)
 	{
 		Console.WriteLine("Welcome to TERMINAL-JACK! - Press any key to continue");
 		Console.ReadLine(); // Starts the game
