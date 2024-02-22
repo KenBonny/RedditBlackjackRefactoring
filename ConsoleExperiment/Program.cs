@@ -83,110 +83,20 @@ internal static class Program
 						}
 						else if (choice == "call") // Round three call
 						{
-							int total = Total(hand); // Calculates card total
-							Console.WriteLine($"Your total is {total}"); // Displays card total
-							PrintDivider();
-							Console.WriteLine("The dealer will now draw cards.");
-							int dealer = DrawCard();
-							int dealer1 = DrawCard();
-							int dealerTotal = dealer + dealer1; // Calculates dealer's current total
-							int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
-							for (; dealerTotal <= total;)
-							{
-								dealerBonus++;
-								for (; dealerBonus > 0; dealerBonus--)
-								{
-									dealerTotal = dealerTotal + DrawCard();
-								}
-							}
-
-							Wait();
-							Console.WriteLine($"The Dealer's total is {dealerTotal}");
-							PrintDivider();
-							Wait();
-							if (dealerTotal > 21)
-							{
-								Console.WriteLine("YOU WIN! Dealer busts!");
-								choice = "finish"; // Prevents looping
-							}
-							else if (dealerTotal > total && dealerTotal < 22)
-							{
-								Console.WriteLine("GAME OVER. Dealer is closer.");
-								choice = "finish"; // Prevents looping
-							}
+							choice = PlayDealer(hand);
 						}
 					}
 				}
 				else if (choice == "call") // Round two call
 				{
-					int total = Total(hand); // Calculates card total
-					Console.WriteLine($"Your total is {total}"); // Displays card total
-					PrintDivider();
-					Console.WriteLine("The dealer will now draw cards.");
-					int dealer = DrawCard();
-					int dealer1 = DrawCard();
-					int dealerTotal = dealer + dealer1; // Calculates dealer's current total
-					int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
-					for (; dealerTotal <= total;)
-					{
-						dealerBonus++;
-						for (; dealerBonus > 0; dealerBonus--)
-						{
-							dealerTotal = dealerTotal + DrawCard();
-						}
-					}
-
-					Wait();
-					Console.WriteLine($"The Dealer's total is {dealerTotal}");
-					PrintDivider();
-					Wait();
-					if (dealerTotal > 21)
-					{
-						Console.WriteLine("YOU WIN! Dealer busts!");
-						choice = "finish"; // Prevents looping
-					}
-					else if (dealerTotal > total && dealerTotal < 22)
-					{
-						Console.WriteLine("GAME OVER. Dealer is closer.");
-						choice = "finish"; // Prevents looping
-					}
+					choice = PlayDealer(hand);
 				}
 			}
 		}
 
 		if (choice == "call")
 		{
-			int total = Total(hand); // Calculates card total
-			Console.WriteLine($"Your total is {total}"); // Displays card total
-			PrintDivider();
-			Console.WriteLine("The dealer will now draw cards.");
-			int dealer0 = DrawCard();
-			int dealer1 = DrawCard();
-			int dealerTotal = dealer0 + dealer1; // Calculates dealer's current total
-			int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
-			for (; dealerTotal <= total;)
-			{
-				dealerBonus++;
-				for (; dealerBonus > 0; dealerBonus--)
-				{
-					dealerTotal += DrawCard();
-				}
-			}
-
-			Wait();
-			Console.WriteLine($"The Dealer's total is {dealerTotal}");
-			PrintDivider();
-			Wait();
-			if (dealerTotal > 21)
-			{
-				Console.WriteLine("YOU WIN! Dealer busts!");
-				choice = "finish"; // Prevents looping
-			}
-			else if (dealerTotal > total && dealerTotal < 22)
-			{
-				Console.WriteLine("GAME OVER. Dealer is closer.");
-				choice = "finish"; // Prevents looping
-			}
+			choice = PlayDealer(hand);
 		}
 
 		if (choice != "finish")
@@ -203,5 +113,42 @@ internal static class Program
 
 		Console.WriteLine("Press any key to close the winddow.");
 		Console.ReadLine(); //Requires key press before window closes
+	}
+
+	private static string PlayDealer(int[] hand)
+	{
+		int total = Total(hand); // Calculates card total
+		Console.WriteLine($"Your total is {total}"); // Displays card total
+		PrintDivider();
+		Console.WriteLine("The dealer will now draw cards.");
+		int dealer = DrawCard();
+		int dealer1 = DrawCard();
+		int dealerTotal = dealer + dealer1; // Calculates dealer's current total
+		int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
+		for (; dealerTotal <= total;)
+		{
+			dealerBonus++;
+			for (; dealerBonus > 0; dealerBonus--)
+			{
+				dealerTotal = dealerTotal + DrawCard();
+			}
+		}
+
+		Wait();
+		Console.WriteLine($"The Dealer's total is {dealerTotal}");
+		PrintDivider();
+		Wait();
+		if (dealerTotal > 21)
+		{
+			Console.WriteLine("YOU WIN! Dealer busts!");
+			return "finish"; // Prevents looping
+		}
+		else if (dealerTotal > total && dealerTotal < 22)
+		{
+			Console.WriteLine("GAME OVER. Dealer is closer.");
+			return "finish"; // Prevents looping
+		}
+
+		return string.Empty;
 	}
 }
