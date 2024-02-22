@@ -13,24 +13,24 @@ internal static class Program
 		Console.ReadLine(); // Starts the game
 		PrintDivider();
 		int milliseconds = 3000;
-		int[] card = new int[5]; // Stores generated numbers
-		card[0] = DrawCard(); // First card
-		card[1] = DrawCard(); // Second card
-		Console.WriteLine($"Your cards are {card[0]} and {card[1]}"); // Displays cards
+		int[] hand = new int[5]; // Stores generated numbers
+		hand[0] = DrawCard(); // First card
+		hand[1] = DrawCard(); // Second card
+		Console.WriteLine($"Your cards are {hand[0]} and {hand[1]}"); // Displays cards
 		PrintDivider(); // First round
 		Console.WriteLine("HIT or CALL?"); // Asks for player input
 		string choice = Console.ReadLine(); // Stores the player's choice
 		if (choice == "hit")
 		{
-			card[2] = DrawCard(); // Third card
-			Console.WriteLine(card[2]); // Displays third card
-			if (card[0] + card[1] + card[2] > 21) // If card sum > 21 player loses
+			hand[2] = DrawCard(); // Third card
+			Console.WriteLine(hand[2]); // Displays third card
+			if (hand[0] + hand[1] + hand[2] > 21) // If card sum > 21 player loses
 			{
 				PrintDivider();
 				Console.WriteLine("GAME OVER;");
 				choice = "finish";
 			}
-			else if (card[0] + card[1] + card[2] == 21) // If card sum == 21 player wins automatically
+			else if (hand[0] + hand[1] + hand[2] == 21) // If card sum == 21 player wins automatically
 			{
 				PrintDivider();
 				Console.WriteLine("YOU WIN!");
@@ -42,15 +42,15 @@ internal static class Program
 				choice = Console.ReadLine(); // Stores/alters player's choice
 				if (choice == "hit")
 				{
-					card[3] = DrawCard(); // Fourth card
-					Console.WriteLine(card[3]); // Displays fourth card
-					if (card[0] + card[1] + card[2] + card[3] > 21) // If card sum > 21 player loses
+					hand[3] = DrawCard(); // Fourth card
+					Console.WriteLine(hand[3]); // Displays fourth card
+					if (hand[0] + hand[1] + hand[2] + hand[3] > 21) // If card sum > 21 player loses
 					{
 						PrintDivider();
 						Console.WriteLine("GAME OVER;");
 						choice = "finish";
 					}
-					else if (card[0] + card[1] + card[2] + card[3] == 21) // If card sum == 21 player wins automatically
+					else if (hand[0] + hand[1] + hand[2] + hand[3] == 21) // If card sum == 21 player wins automatically
 					{
 						PrintDivider();
 						Console.WriteLine("YOU WIN!");
@@ -62,15 +62,15 @@ internal static class Program
 						choice = Console.ReadLine(); // Stores/alters player's choice
 						if (choice == "hit")
 						{
-							card[4] = DrawCard(); // Fifth card
-							Console.WriteLine(card[4]); // Displays fifth card
-							if (card[0] + card[1] + card[2] + card[3] + card[4] == 21) // If player has drawn five cards without busting, they win automatically
+							hand[4] = DrawCard(); // Fifth card
+							Console.WriteLine(hand[4]); // Displays fifth card
+							if (hand[0] + hand[1] + hand[2] + hand[3] + hand[4] == 21) // If player has drawn five cards without busting, they win automatically
 							{
 								PrintDivider();
 								Console.WriteLine("YOU WIN! You managed to draw five cards without busting!");
 								choice = "finish"; // Prevents looping
 							}
-							else if (card[0] + card[1] + card[2] + card[3] + card[4] > 21) // If card sum > 21 player loses
+							else if (hand[0] + hand[1] + hand[2] + hand[3] + hand[4] > 21) // If card sum > 21 player loses
 							{
 								PrintDivider();
 								Console.WriteLine("GAME OVER;");
@@ -79,7 +79,7 @@ internal static class Program
 						}
 						else if (choice == "call") // Round three call
 						{
-							int total = card[0] + card[1] + card[2] + card[3]; // Calculates card total
+							int total = hand[0] + hand[1] + hand[2] + hand[3]; // Calculates card total
 							Console.WriteLine($"Your total is {total}"); // Displays card total
 							PrintDivider();
 							Console.WriteLine("The dealer will now draw cards.");
@@ -115,7 +115,7 @@ internal static class Program
 				}
 				else if (choice == "call") // Round two call
 				{
-					int total = card[0] + card[1] + card[2]; // Calculates card total
+					int total = hand[0] + hand[1] + hand[2]; // Calculates card total
 					Console.WriteLine($"Your total is {total}"); // Displays card total
 					PrintDivider();
 					Console.WriteLine("The dealer will now draw cards.");
@@ -152,7 +152,7 @@ internal static class Program
 
 		if (choice == "call")
 		{
-			int total = card[0] + card[1]; // Calculates card total
+			int total = hand[0] + hand[1]; // Calculates card total
 			Console.WriteLine($"Your total is {total}"); // Displays card total
 			PrintDivider();
 			Console.WriteLine("The dealer will now draw cards.");
