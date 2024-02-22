@@ -5,6 +5,7 @@ internal static class Program
 	private const string Hit = "hit";
 	private const string Call = "call";
 	private const string Finish = "finish";
+	private const int LastRound = 4;
 	private static readonly Random Random = new((int)DateTime.Now.Ticks);
 	private static int DrawCard() => Random.Next(1, 11);
 	private static int Total(int[] hand) => hand.Sum();
@@ -52,55 +53,15 @@ internal static class Program
 		PrintDivider(); // First round
 		string? choice = Choose();
 		int card = 1; // Card counter
-		if (choice == Hit)
+		while (choice == Hit && card <= LastRound)
 		{
-			card++; // Increments card counter to keep track of which card is being drawn
-			hand[card] = DrawCard(); // Third card
-			Console.WriteLine(hand[card]); // Displays third card
-			if (IsBust(hand)) // If card sum > 21 player loses
-			{
-				PrintDivider();
-				Console.WriteLine("GAME OVER;");
-				choice = Finish;
-			}
-			else if (IsBlackjack(hand)) // If card sum == 21 player wins automatically
-			{
-				PrintDivider();
-				Console.WriteLine("YOU WIN!");
-				choice = Finish;
-			}
-			else
+			card++;
+			hand[card] = DrawCard();
+			Console.WriteLine(hand[card]);
+			choice = DetermineWinOrLoose(hand, card == LastRound);
+			if (choice != Finish)
 			{
 				choice = Choose();
-				if (choice == Hit)
-				{
-					card++; // Increments card counter to keep track of which card is being drawn
-					hand[card] = DrawCard(); // Fourth card
-					Console.WriteLine(hand[card]); // Displays fourth card
-					if (IsBust(hand)) // If card sum > 21 player loses
-					{
-						PrintDivider();
-						Console.WriteLine("GAME OVER;");
-						choice = Finish;
-					}
-					else if (IsBlackjack(hand)) // If card sum == 21 player wins automatically
-					{
-						PrintDivider();
-						Console.WriteLine("YOU WIN!");
-						choice = Finish;
-					}
-					else
-					{
-						choice = Choose();
-						if (choice == Hit)
-						{
-							card++; // Increments card counter to keep track of which card is being drawn
-							hand[card] = DrawCard(); // Fifth card
-							Console.WriteLine(hand[card]); // Displays fifth card
-							choice = DetermineWinOrLoose(hand, true);
-						}
-					}
-				}
 			}
 		}
 
