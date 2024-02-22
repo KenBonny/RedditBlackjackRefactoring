@@ -9,13 +9,14 @@ internal static class Program
 	private static bool IsBlackjack(int[] hand) => Total(hand) == 21;
 
 	private static void PrintDivider() => Console.WriteLine("-------------------------");
+	private const int WaitTime = 3000;
+	private static void Wait() => Thread.Sleep(WaitTime);
 
 	public static void Main(string[] args)
 	{
 		Console.WriteLine("Welcome to TERMINAL-JACK! - Press any key to continue");
 		Console.ReadLine(); // Starts the game
 		PrintDivider();
-		int milliseconds = 3000;
 		int[] hand = new int[5]; // Stores generated numbers
 		hand[0] = DrawCard(); // First card
 		hand[1] = DrawCard(); // Second card
@@ -99,10 +100,10 @@ internal static class Program
 								}
 							}
 
-							Thread.Sleep(milliseconds);
+							Wait();
 							Console.WriteLine($"The Dealer's total is {dealerTotal}");
 							PrintDivider();
-							Thread.Sleep(milliseconds);
+							Wait();
 							if (dealerTotal > 21)
 							{
 								Console.WriteLine("YOU WIN! Dealer busts!");
@@ -135,10 +136,10 @@ internal static class Program
 						}
 					}
 
-					Thread.Sleep(milliseconds);
+					Wait();
 					Console.WriteLine($"The Dealer's total is {dealerTotal}");
 					PrintDivider();
-					Thread.Sleep(milliseconds);
+					Wait();
 					if (dealerTotal > 21)
 					{
 						Console.WriteLine("YOU WIN! Dealer busts!");
@@ -172,10 +173,10 @@ internal static class Program
 				}
 			}
 
-			Thread.Sleep(milliseconds);
+			Wait();
 			Console.WriteLine($"The Dealer's total is {dealerTotal}");
 			PrintDivider();
-			Thread.Sleep(milliseconds);
+			Wait();
 			if (dealerTotal > 21)
 			{
 				Console.WriteLine("YOU WIN! Dealer busts!");
@@ -191,11 +192,11 @@ internal static class Program
 		if (choice != "finish")
 		{
 			Console.WriteLine("You absolute donkey.");
-			Thread.Sleep(milliseconds - 1500);
+			Wait();
 			Console.WriteLine("Do you feel good about yourself? Breaking code crafted with blood sweat and tears?");
-			Thread.Sleep(milliseconds);
+			Wait();
 			Console.WriteLine("Enjoy the afterlife. *BANG*");
-			Thread.Sleep(milliseconds);
+			Wait();
 			Console.WriteLine("Press any key to close the window.");
 			Console.ReadLine(); // Requires key press before window closes
 		}
