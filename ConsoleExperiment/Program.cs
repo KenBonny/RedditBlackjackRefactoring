@@ -12,6 +12,12 @@ internal static class Program
 	private const int WaitTime = 3000;
 	private static void Wait() => Thread.Sleep(WaitTime);
 
+	private static string? Choose()
+	{
+		Console.WriteLine("HIT or CALL?"); // Asks for player input
+		return Console.ReadLine(); // Stores the player's choice
+	}
+
 	public static void Main(string[] args)
 	{
 		Console.WriteLine("Welcome to TERMINAL-JACK! - Press any key to continue");
@@ -22,8 +28,7 @@ internal static class Program
 		hand[1] = DrawCard(); // Second card
 		Console.WriteLine($"Your cards are {hand[0]} and {hand[1]}"); // Displays cards
 		PrintDivider(); // First round
-		Console.WriteLine("HIT or CALL?"); // Asks for player input
-		string choice = Console.ReadLine(); // Stores the player's choice
+		string? choice = Choose();
 		if (choice == "hit")
 		{
 			hand[2] = DrawCard(); // Third card
@@ -42,8 +47,7 @@ internal static class Program
 			}
 			else
 			{
-				Console.WriteLine("HIT or CALL?"); // Asks for player input
-				choice = Console.ReadLine(); // Stores/alters player's choice
+				choice = Choose();
 				if (choice == "hit")
 				{
 					hand[3] = DrawCard(); // Fourth card
@@ -62,8 +66,7 @@ internal static class Program
 					}
 					else
 					{
-						Console.WriteLine("HIT or CALL?"); // Asks for player input
-						choice = Console.ReadLine(); // Stores/alters player's choice
+						choice = Choose();
 						if (choice == "hit")
 						{
 							hand[4] = DrawCard(); // Fifth card
