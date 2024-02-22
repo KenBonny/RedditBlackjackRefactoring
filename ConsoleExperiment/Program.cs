@@ -18,6 +18,24 @@ internal static class Program
 		return Console.ReadLine(); // Stores the player's choice
 	}
 
+	private static string DetermineWinOrLoose(int[] hand)
+	{
+		if (IsBlackjack(hand)) // If player has drawn five cards without busting, they win automatically
+		{
+			PrintDivider();
+			Console.WriteLine("YOU WIN! You managed to draw five cards without busting!");
+			return "finish"; // Prevents looping
+		}
+		else if (IsBust(hand)) // If card sum > 21 player loses
+		{
+			PrintDivider();
+			Console.WriteLine("GAME OVER;");
+			return "finish"; // Prevents looping
+		}
+
+		return string.Empty;
+	}
+
 	public static void Main(string[] args)
 	{
 		Console.WriteLine("Welcome to TERMINAL-JACK! - Press any key to continue");
@@ -71,18 +89,7 @@ internal static class Program
 						{
 							hand[4] = DrawCard(); // Fifth card
 							Console.WriteLine(hand[4]); // Displays fifth card
-							if (IsBlackjack(hand)) // If player has drawn five cards without busting, they win automatically
-							{
-								PrintDivider();
-								Console.WriteLine("YOU WIN! You managed to draw five cards without busting!");
-								choice = "finish"; // Prevents looping
-							}
-							else if (IsBust(hand)) // If card sum > 21 player loses
-							{
-								PrintDivider();
-								Console.WriteLine("GAME OVER;");
-								choice = "finish"; // Prevents looping
-							}
+							choice = DetermineWinOrLoose(hand);
 						}
 						else if (choice == "call") // Round three call
 						{
