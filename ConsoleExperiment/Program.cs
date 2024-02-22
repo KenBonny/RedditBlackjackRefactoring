@@ -4,6 +4,9 @@ internal static class Program
 {
 	private static readonly Random Random = new((int)DateTime.Now.Ticks);
 	private static int DrawCard() => Random.Next(1, 11);
+	private static int Total(int[] hand) => hand.Sum();
+	private static bool IsBust(int[] hand) => Total(hand) > 21;
+	private static bool IsBlackjack(int[] hand) => Total(hand) == 21;
 
 	private static void PrintDivider() => Console.WriteLine("-------------------------");
 
@@ -24,13 +27,13 @@ internal static class Program
 		{
 			hand[2] = DrawCard(); // Third card
 			Console.WriteLine(hand[2]); // Displays third card
-			if (hand[0] + hand[1] + hand[2] > 21) // If card sum > 21 player loses
+			if (IsBust(hand)) // If card sum > 21 player loses
 			{
 				PrintDivider();
 				Console.WriteLine("GAME OVER;");
 				choice = "finish";
 			}
-			else if (hand[0] + hand[1] + hand[2] == 21) // If card sum == 21 player wins automatically
+			else if (IsBlackjack(hand)) // If card sum == 21 player wins automatically
 			{
 				PrintDivider();
 				Console.WriteLine("YOU WIN!");
@@ -44,13 +47,13 @@ internal static class Program
 				{
 					hand[3] = DrawCard(); // Fourth card
 					Console.WriteLine(hand[3]); // Displays fourth card
-					if (hand[0] + hand[1] + hand[2] + hand[3] > 21) // If card sum > 21 player loses
+					if (IsBust(hand)) // If card sum > 21 player loses
 					{
 						PrintDivider();
 						Console.WriteLine("GAME OVER;");
 						choice = "finish";
 					}
-					else if (hand[0] + hand[1] + hand[2] + hand[3] == 21) // If card sum == 21 player wins automatically
+					else if (IsBlackjack(hand)) // If card sum == 21 player wins automatically
 					{
 						PrintDivider();
 						Console.WriteLine("YOU WIN!");
@@ -64,13 +67,13 @@ internal static class Program
 						{
 							hand[4] = DrawCard(); // Fifth card
 							Console.WriteLine(hand[4]); // Displays fifth card
-							if (hand[0] + hand[1] + hand[2] + hand[3] + hand[4] == 21) // If player has drawn five cards without busting, they win automatically
+							if (IsBlackjack(hand)) // If player has drawn five cards without busting, they win automatically
 							{
 								PrintDivider();
 								Console.WriteLine("YOU WIN! You managed to draw five cards without busting!");
 								choice = "finish"; // Prevents looping
 							}
-							else if (hand[0] + hand[1] + hand[2] + hand[3] + hand[4] > 21) // If card sum > 21 player loses
+							else if (IsBust(hand)) // If card sum > 21 player loses
 							{
 								PrintDivider();
 								Console.WriteLine("GAME OVER;");
@@ -79,7 +82,7 @@ internal static class Program
 						}
 						else if (choice == "call") // Round three call
 						{
-							int total = hand[0] + hand[1] + hand[2] + hand[3]; // Calculates card total
+							int total = Total(hand); // Calculates card total
 							Console.WriteLine($"Your total is {total}"); // Displays card total
 							PrintDivider();
 							Console.WriteLine("The dealer will now draw cards.");
@@ -115,7 +118,7 @@ internal static class Program
 				}
 				else if (choice == "call") // Round two call
 				{
-					int total = hand[0] + hand[1] + hand[2]; // Calculates card total
+					int total = Total(hand); // Calculates card total
 					Console.WriteLine($"Your total is {total}"); // Displays card total
 					PrintDivider();
 					Console.WriteLine("The dealer will now draw cards.");
@@ -152,7 +155,7 @@ internal static class Program
 
 		if (choice == "call")
 		{
-			int total = hand[0] + hand[1]; // Calculates card total
+			int total = Total(hand); // Calculates card total
 			Console.WriteLine($"Your total is {total}"); // Displays card total
 			PrintDivider();
 			Console.WriteLine("The dealer will now draw cards.");
