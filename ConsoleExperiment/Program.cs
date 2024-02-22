@@ -6,11 +6,12 @@ internal static class Program
 	private const string Call = "call";
 	private const string Finish = "finish";
 	private const int LastRound = 4;
+	private const int Blackjack = 21;
 	private static readonly Random Random = new((int)DateTime.Now.Ticks);
 	private static int DrawCard() => Random.Next(1, 11);
 	private static int Total(int[] hand) => hand.Sum();
-	private static bool IsBust(int[] hand) => Total(hand) > 21;
-	private static bool IsBlackjack(int[] hand) => Total(hand) == 21;
+	private static bool IsBust(int[] hand) => Total(hand) > Blackjack;
+	private static bool IsBlackjack(int[] hand) => Total(hand) == Blackjack;
 
 	private static void PrintDivider() => Console.WriteLine("-------------------------");
 	private const int WaitTime = 3000;
@@ -102,12 +103,12 @@ internal static class Program
 		Console.WriteLine($"The Dealer's total is {dealerTotal}");
 		PrintDivider();
 		Wait();
-		if (dealerTotal > 21)
+		if (dealerTotal > Blackjack)
 		{
 			Console.WriteLine("YOU WIN! Dealer busts!");
 			return "finish"; // Prevents looping
 		}
-		else if (dealerTotal > total && dealerTotal < 22)
+		else if (dealerTotal > total && dealerTotal <= Blackjack)
 		{
 			Console.WriteLine("GAME OVER. Dealer is closer.");
 			return "finish"; // Prevents looping
