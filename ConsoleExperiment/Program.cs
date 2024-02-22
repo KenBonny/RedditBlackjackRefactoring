@@ -124,7 +124,7 @@ internal static class Program
 		int dealer = DrawCard();
 		int dealer1 = DrawCard();
 		int dealerTotal = dealer + dealer1; // Calculates dealer's current total
-		for (; dealerTotal <= total;)
+		while (dealerTotal <= total)
 		{
 			dealerTotal += DrawCard();
 		}
