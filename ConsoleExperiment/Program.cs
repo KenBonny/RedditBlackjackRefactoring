@@ -2,18 +2,20 @@
 
 internal static class Program
 {
+	private static void PrintDivider() => Console.WriteLine("-------------------------");
+
 	public static void Main(string[] args)
 	{
 		Console.WriteLine("Welcome to TERMINAL-JACK! - Press any key to continue");
 		Console.ReadLine(); // Starts the game
-		Console.WriteLine("-------------------------");
+		PrintDivider();
 		int milliseconds = 3000;
 		Random rnd = new Random(); // Allows random numbers to generate
 		int[] card = new int[5]; // Stores generated numbers
 		card[0] = rnd.Next(1, 11); // First card
 		card[1] = rnd.Next(1, 11); // Second card
 		Console.WriteLine("Your cards are " + card[0] + " and " + card[1]); // Displays cards
-		Console.WriteLine("-------------------------"); // First round
+		PrintDivider(); // First round
 		Console.WriteLine("HIT or CALL?"); // Asks for player input
 		string choice = Console.ReadLine(); // Stores the player's choice
 		if (choice == "hit")
@@ -22,13 +24,13 @@ internal static class Program
 			Console.WriteLine(card[2]); // Displays third card
 			if (card[0] + card[1] + card[2] > 21) // If card sum > 21 player loses
 			{
-				Console.WriteLine("-------------------------");
+				PrintDivider();
 				Console.WriteLine("GAME OVER;");
 				choice = "finish";
 			}
 			else if (card[0] + card[1] + card[2] == 21) // If card sum == 21 player wins automatically
 			{
-				Console.WriteLine("-------------------------");
+				PrintDivider();
 				Console.WriteLine("YOU WIN!");
 				choice = "finish";
 			}
@@ -42,13 +44,13 @@ internal static class Program
 					Console.WriteLine(card[3]); // Displays fourth card
 					if (card[0] + card[1] + card[2] + card[3] > 21) // If card sum > 21 player loses
 					{
-						Console.WriteLine("-------------------------");
+						PrintDivider();
 						Console.WriteLine("GAME OVER;");
 						choice = "finish";
 					}
 					else if (card[0] + card[1] + card[2] + card[3] == 21) // If card sum == 21 player wins automatically
 					{
-						Console.WriteLine("-------------------------");
+						PrintDivider();
 						Console.WriteLine("YOU WIN!");
 						choice = "finish";
 					}
@@ -62,13 +64,13 @@ internal static class Program
 							Console.WriteLine(card[4]); // Displays fifth card
 							if (card[0] + card[1] + card[2] + card[3] + card[4] == 21) // If player has drawn five cards without busting, they win automatically
 							{
-								Console.WriteLine("-------------------------");
+								PrintDivider();
 								Console.WriteLine("YOU WIN! You managed to draw five cards without busting!");
 								choice = "finish"; // Prevents looping
 							}
 							else if (card[0] + card[1] + card[2] + card[3] + card[4] > 21) // If card sum > 21 player loses
 							{
-								Console.WriteLine("-------------------------");
+								PrintDivider();
 								Console.WriteLine("GAME OVER;");
 								choice = "finish"; // Prevents looping
 							}
@@ -77,7 +79,7 @@ internal static class Program
 						{
 							int total = card[0] + card[1] + card[2] + card[3]; // Calculates card total
 							Console.WriteLine("Your total is " + total); // Displays card total
-							Console.WriteLine("-------------------------");
+							PrintDivider();
 							Console.WriteLine("The dealer will now draw cards.");
 							int dealer = rnd.Next(1, 11);
 							int dealer1 = rnd.Next(1, 11);
@@ -94,7 +96,7 @@ internal static class Program
 
 							Thread.Sleep(milliseconds);
 							Console.WriteLine("The Dealer's total is " + dealerTotal);
-							Console.WriteLine("-------------------------");
+							PrintDivider();
 							Thread.Sleep(milliseconds);
 							if (dealerTotal > 21)
 							{
@@ -113,7 +115,7 @@ internal static class Program
 				{
 					int total = card[0] + card[1] + card[2]; // Calculates card total
 					Console.WriteLine("Your total is " + total); // Displays card total
-					Console.WriteLine("-------------------------");
+					PrintDivider();
 					Console.WriteLine("The dealer will now draw cards.");
 					int dealer = rnd.Next(1, 11);
 					int dealer1 = rnd.Next(1, 11);
@@ -130,7 +132,7 @@ internal static class Program
 
 					Thread.Sleep(milliseconds);
 					Console.WriteLine("The Dealer's total is " + dealerTotal);
-					Console.WriteLine("-------------------------");
+					PrintDivider();
 					Thread.Sleep(milliseconds);
 					if (dealerTotal > 21)
 					{
@@ -150,7 +152,7 @@ internal static class Program
 		{
 			int total = card[0] + card[1]; // Calculates card total
 			Console.WriteLine("Your total is " + total); // Displays card total
-			Console.WriteLine("-------------------------");
+			PrintDivider();
 			Console.WriteLine("The dealer will now draw cards.");
 			int dealer0 = rnd.Next(1, 11);
 			int dealer1 = rnd.Next(1, 11);
@@ -167,7 +169,7 @@ internal static class Program
 
 			Thread.Sleep(milliseconds);
 			Console.WriteLine("The Dealer's total is " + dealerTotal);
-			Console.WriteLine("-------------------------");
+			PrintDivider();
 			Thread.Sleep(milliseconds);
 			if (dealerTotal > 21)
 			{
