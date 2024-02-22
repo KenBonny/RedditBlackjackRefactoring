@@ -91,15 +91,7 @@ internal static class Program
 							Console.WriteLine(hand[4]); // Displays fifth card
 							choice = DetermineWinOrLoose(hand);
 						}
-						else if (choice == "call") // Round three call
-						{
-							choice = PlayDealer(hand);
-						}
 					}
-				}
-				else if (choice == "call") // Round two call
-				{
-					choice = PlayDealer(hand);
 				}
 			}
 		}
