@@ -121,9 +121,7 @@ internal static class Program
 		Console.WriteLine($"Your total is {total}"); // Displays card total
 		PrintDivider();
 		Console.WriteLine("The dealer will now draw cards.");
-		int dealer = DrawCard();
-		int dealer1 = DrawCard();
-		int dealerTotal = dealer + dealer1; // Calculates dealer's current total
+		int dealerTotal = DrawCard() + DrawCard(); // Calculates dealer's current total
 		while (dealerTotal <= total)
 		{
 			dealerTotal += DrawCard();
