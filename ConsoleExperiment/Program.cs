@@ -18,12 +18,13 @@ internal static class Program
 		return Console.ReadLine(); // Stores the player's choice
 	}
 
-	private static string DetermineWinOrLoose(int[] hand)
+	private static string DetermineWinOrLoose(int[] hand, bool isLastRound)
 	{
 		if (IsBlackjack(hand)) // If player has drawn five cards without busting, they win automatically
 		{
 			PrintDivider();
-			Console.WriteLine("YOU WIN! You managed to draw five cards without busting!");
+			Console.WriteLine(isLastRound ? "YOU WIN! You managed to draw five cards without busting!" : "YOU WIN!");
+
 			return "finish"; // Prevents looping
 		}
 		else if (IsBust(hand)) // If card sum > 21 player loses
@@ -93,7 +94,7 @@ internal static class Program
 							card++; // Increments card counter to keep track of which card is being drawn
 							hand[card] = DrawCard(); // Fifth card
 							Console.WriteLine(hand[card]); // Displays fifth card
-							choice = DetermineWinOrLoose(hand);
+							choice = DetermineWinOrLoose(hand, true);
 						}
 					}
 				}
