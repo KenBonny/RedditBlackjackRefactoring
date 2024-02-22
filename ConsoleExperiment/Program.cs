@@ -124,14 +124,9 @@ internal static class Program
 		int dealer = DrawCard();
 		int dealer1 = DrawCard();
 		int dealerTotal = dealer + dealer1; // Calculates dealer's current total
-		int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
 		for (; dealerTotal <= total;)
 		{
-			dealerBonus++;
-			for (; dealerBonus > 0; dealerBonus--)
-			{
-				dealerTotal = dealerTotal + DrawCard();
-			}
+			dealerTotal += DrawCard();
 		}
 
 		Wait();
