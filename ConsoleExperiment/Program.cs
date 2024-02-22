@@ -2,7 +2,7 @@
 
 internal static class Program
 {
-	private static readonly Random Random = new();
+	private static readonly Random Random = new((int)DateTime.Now.Ticks);
 
 	private static void PrintDivider() => Console.WriteLine("-------------------------");
 
