@@ -16,7 +16,7 @@ internal static class Program
 		int[] card = new int[5]; // Stores generated numbers
 		card[0] = DrawCard(); // First card
 		card[1] = DrawCard(); // Second card
-		Console.WriteLine("Your cards are " + card[0] + " and " + card[1]); // Displays cards
+		Console.WriteLine($"Your cards are {card[0]} and {card[1]}"); // Displays cards
 		PrintDivider(); // First round
 		Console.WriteLine("HIT or CALL?"); // Asks for player input
 		string choice = Console.ReadLine(); // Stores the player's choice
@@ -80,7 +80,7 @@ internal static class Program
 						else if (choice == "call") // Round three call
 						{
 							int total = card[0] + card[1] + card[2] + card[3]; // Calculates card total
-							Console.WriteLine("Your total is " + total); // Displays card total
+							Console.WriteLine($"Your total is {total}"); // Displays card total
 							PrintDivider();
 							Console.WriteLine("The dealer will now draw cards.");
 							int dealer = DrawCard();
@@ -97,7 +97,7 @@ internal static class Program
 							}
 
 							Thread.Sleep(milliseconds);
-							Console.WriteLine("The Dealer's total is " + dealerTotal);
+							Console.WriteLine($"The Dealer's total is {dealerTotal}");
 							PrintDivider();
 							Thread.Sleep(milliseconds);
 							if (dealerTotal > 21)
@@ -116,7 +116,7 @@ internal static class Program
 				else if (choice == "call") // Round two call
 				{
 					int total = card[0] + card[1] + card[2]; // Calculates card total
-					Console.WriteLine("Your total is " + total); // Displays card total
+					Console.WriteLine($"Your total is {total}"); // Displays card total
 					PrintDivider();
 					Console.WriteLine("The dealer will now draw cards.");
 					int dealer = DrawCard();
@@ -133,7 +133,7 @@ internal static class Program
 					}
 
 					Thread.Sleep(milliseconds);
-					Console.WriteLine("The Dealer's total is " + dealerTotal);
+					Console.WriteLine($"The Dealer's total is {dealerTotal}");
 					PrintDivider();
 					Thread.Sleep(milliseconds);
 					if (dealerTotal > 21)
@@ -153,7 +153,7 @@ internal static class Program
 		if (choice == "call")
 		{
 			int total = card[0] + card[1]; // Calculates card total
-			Console.WriteLine("Your total is " + total); // Displays card total
+			Console.WriteLine($"Your total is {total}"); // Displays card total
 			PrintDivider();
 			Console.WriteLine("The dealer will now draw cards.");
 			int dealer0 = DrawCard();
@@ -170,7 +170,7 @@ internal static class Program
 			}
 
 			Thread.Sleep(milliseconds);
-			Console.WriteLine("The Dealer's total is " + dealerTotal);
+			Console.WriteLine($"The Dealer's total is {dealerTotal}");
 			PrintDivider();
 			Thread.Sleep(milliseconds);
 			if (dealerTotal > 21)
