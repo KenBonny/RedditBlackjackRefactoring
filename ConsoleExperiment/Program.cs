@@ -47,10 +47,12 @@ internal static class Program
 		Console.WriteLine($"Your cards are {hand[0]} and {hand[1]}"); // Displays cards
 		PrintDivider(); // First round
 		string? choice = Choose();
+		int card = 1; // Card counter
 		if (choice == "hit")
 		{
-			hand[2] = DrawCard(); // Third card
-			Console.WriteLine(hand[2]); // Displays third card
+			card++; // Increments card counter to keep track of which card is being drawn
+			hand[card] = DrawCard(); // Third card
+			Console.WriteLine(hand[card]); // Displays third card
 			if (IsBust(hand)) // If card sum > 21 player loses
 			{
 				PrintDivider();
@@ -68,8 +70,9 @@ internal static class Program
 				choice = Choose();
 				if (choice == "hit")
 				{
-					hand[3] = DrawCard(); // Fourth card
-					Console.WriteLine(hand[3]); // Displays fourth card
+					card++; // Increments card counter to keep track of which card is being drawn
+					hand[card] = DrawCard(); // Fourth card
+					Console.WriteLine(hand[card]); // Displays fourth card
 					if (IsBust(hand)) // If card sum > 21 player loses
 					{
 						PrintDivider();
@@ -87,8 +90,9 @@ internal static class Program
 						choice = Choose();
 						if (choice == "hit")
 						{
-							hand[4] = DrawCard(); // Fifth card
-							Console.WriteLine(hand[4]); // Displays fifth card
+							card++; // Increments card counter to keep track of which card is being drawn
+							hand[card] = DrawCard(); // Fifth card
+							Console.WriteLine(hand[card]); // Displays fifth card
 							choice = DetermineWinOrLoose(hand);
 						}
 					}
