@@ -3,6 +3,7 @@
 internal static class Program
 {
 	private static readonly Random Random = new((int)DateTime.Now.Ticks);
+	private static int DrawCard() => Random.Next(1, 11);
 
 	private static void PrintDivider() => Console.WriteLine("-------------------------");
 
@@ -13,15 +14,15 @@ internal static class Program
 		PrintDivider();
 		int milliseconds = 3000;
 		int[] card = new int[5]; // Stores generated numbers
-		card[0] = Random.Next(1, 11); // First card
-		card[1] = Random.Next(1, 11); // Second card
+		card[0] = DrawCard(); // First card
+		card[1] = DrawCard(); // Second card
 		Console.WriteLine("Your cards are " + card[0] + " and " + card[1]); // Displays cards
 		PrintDivider(); // First round
 		Console.WriteLine("HIT or CALL?"); // Asks for player input
 		string choice = Console.ReadLine(); // Stores the player's choice
 		if (choice == "hit")
 		{
-			card[2] = Random.Next(1, 11); // Third card
+			card[2] = DrawCard(); // Third card
 			Console.WriteLine(card[2]); // Displays third card
 			if (card[0] + card[1] + card[2] > 21) // If card sum > 21 player loses
 			{
@@ -41,7 +42,7 @@ internal static class Program
 				choice = Console.ReadLine(); // Stores/alters player's choice
 				if (choice == "hit")
 				{
-					card[3] = Random.Next(1, 11); // Fourth card
+					card[3] = DrawCard(); // Fourth card
 					Console.WriteLine(card[3]); // Displays fourth card
 					if (card[0] + card[1] + card[2] + card[3] > 21) // If card sum > 21 player loses
 					{
@@ -61,7 +62,7 @@ internal static class Program
 						choice = Console.ReadLine(); // Stores/alters player's choice
 						if (choice == "hit")
 						{
-							card[4] = Random.Next(1, 11); // Fifth card
+							card[4] = DrawCard(); // Fifth card
 							Console.WriteLine(card[4]); // Displays fifth card
 							if (card[0] + card[1] + card[2] + card[3] + card[4] == 21) // If player has drawn five cards without busting, they win automatically
 							{
@@ -82,8 +83,8 @@ internal static class Program
 							Console.WriteLine("Your total is " + total); // Displays card total
 							PrintDivider();
 							Console.WriteLine("The dealer will now draw cards.");
-							int dealer = Random.Next(1, 11);
-							int dealer1 = Random.Next(1, 11);
+							int dealer = DrawCard();
+							int dealer1 = DrawCard();
 							int dealerTotal = dealer + dealer1; // Calculates dealer's current total
 							int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
 							for (; dealerTotal <= total;)
@@ -91,7 +92,7 @@ internal static class Program
 								dealerBonus++;
 								for (; dealerBonus > 0; dealerBonus--)
 								{
-									dealerTotal = dealerTotal + Random.Next(1, 11);
+									dealerTotal = dealerTotal + DrawCard();
 								}
 							}
 
@@ -118,8 +119,8 @@ internal static class Program
 					Console.WriteLine("Your total is " + total); // Displays card total
 					PrintDivider();
 					Console.WriteLine("The dealer will now draw cards.");
-					int dealer = Random.Next(1, 11);
-					int dealer1 = Random.Next(1, 11);
+					int dealer = DrawCard();
+					int dealer1 = DrawCard();
 					int dealerTotal = dealer + dealer1; // Calculates dealer's current total
 					int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
 					for (; dealerTotal <= total;)
@@ -127,7 +128,7 @@ internal static class Program
 						dealerBonus++;
 						for (; dealerBonus > 0; dealerBonus--)
 						{
-							dealerTotal = dealerTotal + Random.Next(1, 11);
+							dealerTotal = dealerTotal + DrawCard();
 						}
 					}
 
@@ -155,8 +156,8 @@ internal static class Program
 			Console.WriteLine("Your total is " + total); // Displays card total
 			PrintDivider();
 			Console.WriteLine("The dealer will now draw cards.");
-			int dealer0 = Random.Next(1, 11);
-			int dealer1 = Random.Next(1, 11);
+			int dealer0 = DrawCard();
+			int dealer1 = DrawCard();
 			int dealerTotal = dealer0 + dealer1; // Calculates dealer's current total
 			int dealerBonus = 0; // Used to measure how many bonus cards the dealer draws
 			for (; dealerTotal <= total;)
@@ -164,7 +165,7 @@ internal static class Program
 				dealerBonus++;
 				for (; dealerBonus > 0; dealerBonus--)
 				{
-					dealerTotal += Random.Next(1, 11);
+					dealerTotal += DrawCard();
 				}
 			}
 
