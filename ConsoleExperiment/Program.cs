@@ -108,7 +108,7 @@ internal static class Program
 			Console.WriteLine("YOU WIN! Dealer busts!");
 			return "finish"; // Prevents looping
 		}
-		else if (dealerTotal > total && dealerTotal <= Blackjack)
+		else if (dealerTotal > total)
 		{
 			Console.WriteLine("GAME OVER. Dealer is closer.");
 			return "finish"; // Prevents looping
