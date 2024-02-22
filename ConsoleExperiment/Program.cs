@@ -2,6 +2,9 @@
 
 internal static class Program
 {
+	private const string Hit = "hit";
+	private const string Call = "call";
+	private const string Finish = "finish";
 	private static readonly Random Random = new((int)DateTime.Now.Ticks);
 	private static int DrawCard() => Random.Next(1, 11);
 	private static int Total(int[] hand) => hand.Sum();
@@ -25,13 +28,13 @@ internal static class Program
 			PrintDivider();
 			Console.WriteLine(isLastRound ? "YOU WIN! You managed to draw five cards without busting!" : "YOU WIN!");
 
-			return "finish"; // Prevents looping
+			return Finish; // Prevents looping
 		}
 		else if (IsBust(hand)) // If card sum > 21 player loses
 		{
 			PrintDivider();
 			Console.WriteLine("GAME OVER;");
-			return "finish"; // Prevents looping
+			return Finish; // Prevents looping
 		}
 
 		return string.Empty;
@@ -49,7 +52,7 @@ internal static class Program
 		PrintDivider(); // First round
 		string? choice = Choose();
 		int card = 1; // Card counter
-		if (choice == "hit")
+		if (choice == Hit)
 		{
 			card++; // Increments card counter to keep track of which card is being drawn
 			hand[card] = DrawCard(); // Third card
@@ -58,18 +61,18 @@ internal static class Program
 			{
 				PrintDivider();
 				Console.WriteLine("GAME OVER;");
-				choice = "finish";
+				choice = Finish;
 			}
 			else if (IsBlackjack(hand)) // If card sum == 21 player wins automatically
 			{
 				PrintDivider();
 				Console.WriteLine("YOU WIN!");
-				choice = "finish";
+				choice = Finish;
 			}
 			else
 			{
 				choice = Choose();
-				if (choice == "hit")
+				if (choice == Hit)
 				{
 					card++; // Increments card counter to keep track of which card is being drawn
 					hand[card] = DrawCard(); // Fourth card
@@ -78,18 +81,18 @@ internal static class Program
 					{
 						PrintDivider();
 						Console.WriteLine("GAME OVER;");
-						choice = "finish";
+						choice = Finish;
 					}
 					else if (IsBlackjack(hand)) // If card sum == 21 player wins automatically
 					{
 						PrintDivider();
 						Console.WriteLine("YOU WIN!");
-						choice = "finish";
+						choice = Finish;
 					}
 					else
 					{
 						choice = Choose();
-						if (choice == "hit")
+						if (choice == Hit)
 						{
 							card++; // Increments card counter to keep track of which card is being drawn
 							hand[card] = DrawCard(); // Fifth card
@@ -101,12 +104,12 @@ internal static class Program
 			}
 		}
 
-		if (choice == "call")
+		if (choice == Call)
 		{
 			choice = PlayDealer(hand);
 		}
 
-		if (choice != "finish")
+		if (choice != Finish)
 		{
 			Console.WriteLine("You absolute donkey.");
 			Wait();
