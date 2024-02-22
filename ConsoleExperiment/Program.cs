@@ -52,13 +52,13 @@ internal static class Program
 		Console.WriteLine($"Your cards are {hand[0]} and {hand[1]}"); // Displays cards
 		PrintDivider(); // First round
 		string? choice = Choose();
-		int card = 1; // Card counter
-		while (choice == Hit && card <= LastRound)
+		int round = 1; // Card counter
+		while (choice == Hit && round <= LastRound)
 		{
-			card++;
-			hand[card] = DrawCard();
-			Console.WriteLine(hand[card]);
-			choice = DetermineWinOrLoose(hand, card == LastRound);
+			round++;
+			hand[round] = DrawCard();
+			Console.WriteLine(hand[round]);
+			choice = DetermineWinOrLoose(hand, round == LastRound);
 			if (choice != Finish)
 			{
 				choice = Choose();
