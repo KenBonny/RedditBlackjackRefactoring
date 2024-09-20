@@ -8,21 +8,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer().AddSwaggerGen().AddMarten(options =>
-{
-    // Establish the connection string to your Marten database
-    options.Connection(builder.Configuration.GetConnectionString("Postgres")!);
+builder.Services.AddEndpointsApiExplorer().AddSwaggerGen();
+builder.Services.AddMarten(
+        options =>
+        {
+            // Establish the connection string to your Marten database
+            options.Connection(builder.Configuration.GetConnectionString("Postgres")!);
 
-    // Specify that we want to use STJ as our serializer
-    options.UseSystemTextJsonForSerialization();
+            // Specify that we want to use STJ as our serializer
+            options.UseSystemTextJsonForSerialization();
 
-    // If we're running in development mode, let Marten just take care
-    // of all necessary schema building and patching behind the scenes
-    if (builder.Environment.IsDevelopment())
-    {
-        options.AutoCreateSchemaObjects = AutoCreate.All;
-    }
-});
+            // If we're running in development mode, let Marten just take care
+            // of all necessary schema building and patching behind the scenes
+            if (builder.Environment.IsDevelopment())
+            {
+                options.AutoCreateSchemaObjects = AutoCreate.All;
+            }
+        })
+    .UseLightweightSessions();
 builder.Host.UseWolverine(
     opts =>
     {
