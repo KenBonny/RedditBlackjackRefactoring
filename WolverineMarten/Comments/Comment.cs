@@ -32,6 +32,7 @@ public sealed class ThreadProjection : SingleStreamProjection<Thread>
             {
                 Id = thread.Comments.Count,
                 Text = reply.Text,
+                ParentId = reply.ParentId,
             });
         return thread;
     }
