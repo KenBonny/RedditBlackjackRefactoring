@@ -9,7 +9,6 @@ public record Thread
     public static Thread Create(StartTopic start) =>
         new()
         {
-            Id = Guid.NewGuid(),
             Title = start.Title,
             Comments =
             [
