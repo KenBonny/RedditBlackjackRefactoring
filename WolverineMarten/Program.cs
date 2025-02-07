@@ -1,8 +1,10 @@
 using Marten;
+using Marten.Events.Projections;
 using Oakton;
 using Weasel.Core;
 using Wolverine;
 using Wolverine.Http;
+using WolverineMarten.Comments;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,7 @@ builder.Services.AddMarten(
             {
                 options.AutoCreateSchemaObjects = AutoCreate.All;
             }
+            options.Projections.Add<ThreadProjection>(ProjectionLifecycle.Inline);
         })
     .UseLightweightSessions();
 builder.Host.UseWolverine(

@@ -1,11 +1,16 @@
-﻿namespace WolverineMarten.Comments;
+﻿using Marten.Events.Aggregation;
+
+namespace WolverineMarten.Comments;
 
 public record Thread
 {
     public Guid Id { get; init; }
     public required string Title { get; init; }
     public List<Comment> Comments { get; init; } = [];
+}
 
+public sealed class ThreadProjection : SingleStreamProjection<Thread>
+{
     public static Thread Create(StartTopic start) =>
         new()
         {
