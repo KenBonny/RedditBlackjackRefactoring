@@ -16,7 +16,7 @@ builder.Services.AddMarten(
             options.Connection(builder.Configuration.GetConnectionString("Postgres")!);
 
             // Specify that we want to use STJ as our serializer
-            options.UseSystemTextJsonForSerialization();
+            options.UseSystemTextJsonForSerialization(enumStorage: EnumStorage.AsString);
 
             // If we're running in development mode, let Marten just take care
             // of all necessary schema building and patching behind the scenes
