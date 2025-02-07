@@ -21,7 +21,7 @@ public record StartTopic(string Title, string Text);
 
 public record CloseTopic(int Id);
 
-public record Reply(int ParentId, string Text);
+public record Reply(int Id, int ParentId, string Text);
 
 public record Upvote(int Id);
 
