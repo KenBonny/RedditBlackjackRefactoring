@@ -1,4 +1,5 @@
 using Marten;
+using Marten.Events;
 using Marten.Events.Projections;
 using Oakton;
 using Weasel.Core;
@@ -11,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer().AddSwaggerGen();
-builder.Services.AddMarten(
+builder.Services.AddWolverineHttp()
+    .AddMarten(
         options =>
         {
             // Establish the connection string to your Marten database
