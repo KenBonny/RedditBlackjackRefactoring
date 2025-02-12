@@ -22,6 +22,25 @@ builder.Services.AddWolverineHttp()
             // Specify that we want to use STJ as our serializer
             options.UseSystemTextJsonForSerialization(enumStorage: EnumStorage.AsString);
 
+            // Turn on the PostgreSQL table partitioning for
+            // hot/cold storage on archived events
+            options.Events.UseArchivedStreamPartitioning = true;
+
+            // Use the *much* faster workflow for appending events
+            // at the cost of *some* loss of metadata usage for
+            // inline projections
+            options.Events.AppendMode = EventAppendMode.Quick;
+
+            // Little more involved, but this can reduce the number
+            // of database queries necessary to process projections
+            // during CQRS command handling with certain workflows
+            options.Events.UseIdentityMapForAggregates = true;
+
+            // Opts into a mode where Marten is able to rebuild single
+            // stream projections faster by building one stream at a time
+            // Does require new table migrations for Marten 7 users though
+            options.Events.UseOptimizedProjectionRebuilds = true;
+
             // If we're running in development mode, let Marten just take care
             // of all necessary schema building and patching behind the scenes
             if (builder.Environment.IsDevelopment())
