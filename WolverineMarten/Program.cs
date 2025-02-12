@@ -5,6 +5,7 @@ using Oakton;
 using Weasel.Core;
 using Wolverine;
 using Wolverine.Http;
+using Wolverine.Marten;
 using WolverineMarten.Comments;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,7 +50,8 @@ builder.Services.AddWolverineHttp()
             }
             options.Projections.Add<ThreadProjection>(ProjectionLifecycle.Inline);
         })
-    .UseLightweightSessions();
+    .UseLightweightSessions()
+    .IntegrateWithWolverine();
 builder.Host.UseWolverine(
     opts =>
     {
