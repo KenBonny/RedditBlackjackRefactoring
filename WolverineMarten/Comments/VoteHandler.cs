@@ -1,23 +1,15 @@
-﻿using Marten;
-using Wolverine.Http;
+﻿using Wolverine.Http;
+using Wolverine.Http.Marten;
 
 namespace WolverineMarten.Comments;
 
 public static class VoteHandler
 {
-    [WolverinePost("/topic/{topicId}/upvote/{commentId}")]
+    [WolverinePost("/topic/{id}/upvote/{commentId}")]
     [EmptyResponse]
-    public static async Task Upvote(Guid topicId, int commentId, IDocumentSession session)
-    {
-        session.Events.Append(topicId, new Upvote(commentId));
-        await session.SaveChangesAsync();
-    }
+    public static Upvote Upvote(int commentId, [Aggregate] Thread thread) => new(commentId);
 
-    [WolverinePost("/topic/{topicId}/downvote/{commentId}")]
+    [WolverinePost("/topic/{id}/downvote/{commentId}")]
     [EmptyResponse]
-    public static async Task Downvote(Guid topicId, int commentId, IDocumentSession session)
-    {
-        session.Events.Append(topicId, new Downvote(commentId));
-        await session.SaveChangesAsync();
-    }
+    public static Downvote Downvote(int commentId, [Aggregate] Thread thread) => new(commentId);
 }

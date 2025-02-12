@@ -1,5 +1,6 @@
-﻿using Marten;
-using Wolverine.Http;
+﻿using Wolverine.Http;
+using Wolverine.Http.Marten;
+using Wolverine.Marten;
 
 namespace WolverineMarten.Comments;
 
@@ -10,11 +11,11 @@ public record ReplyText(string Text)
 
 public static class ReplyHandler
 {
-    [WolverinePost("/topic/{topicId}/reply/{replyId}")]
-    public static async Task<IResult> Reply(Guid topicId, int replyId, ReplyText text, IDocumentSession session)
+    [WolverinePost("/topic/{id}/reply/{replyId}")]
+    public static (IResult, Events) Reply(Guid id, int replyId, ReplyText text, [Aggregate] Thread thread)
     {
-        session.Events.Append(topicId, new Reply(0, replyId, text));
-        await session.SaveChangesAsync();
-        return Results.Ok();
+        var events = new Events();
+        events.Add(new Reply(0, replyId, text));
+        return (Results.Ok(), events);
     }
 }

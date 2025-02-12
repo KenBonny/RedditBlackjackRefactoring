@@ -1,14 +1,10 @@
-﻿using Marten;
-using Wolverine.Http;
+﻿using Wolverine.Http;
+using Wolverine.Http.Marten;
 
 namespace WolverineMarten.Comments;
 
 public static class GetThreadHandler
 {
     [WolverineGet("/topic/{topicId}")]
-    public static async Task<IResult> GetTopic(Guid topicId, IDocumentSession session)
-    {
-        var topic = await session.Events.AggregateStreamAsync<Thread>(topicId);
-        return Results.Ok(topic);
-    }
+    public static IResult GetTopic([Aggregate("topicId")] Thread thread) => Results.Ok(thread);
 }

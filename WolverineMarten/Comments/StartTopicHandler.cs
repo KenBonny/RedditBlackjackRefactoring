@@ -1,15 +1,14 @@
-﻿using Marten;
-using Wolverine.Http;
+﻿using Wolverine.Http;
+using Wolverine.Marten;
 
 namespace WolverineMarten.Comments;
 
 public static class StartTopicHandler
 {
     [WolverinePost("/topic")]
-    public static async Task<IResult> PostComment(StartTopic startTopic, IDocumentSession session)
+    public static (IResult, IStartStream) PostComment(StartTopic startTopic)
     {
-        var eventStream = session.Events.StartStream<Thread>(startTopic);
-        await session.SaveChangesAsync();
-        return Results.Accepted($"/topic/{eventStream.Id:D}");
+        var stream = MartenOps.StartStream<Thread>(startTopic);
+        return (Results.Accepted($"/topic/{stream.StreamId:D}"), stream);
     }
 }
