@@ -53,6 +53,8 @@ public sealed class ThreadProjection : SingleStreamProjection<Thread>
             comment.Downvotes++;
         return thread;
     }
+
+    public static bool ShouldDelete(CloseTopic close) => true;
 }
 
 public record Comment
@@ -67,7 +69,7 @@ public record Comment
 
 public record StartTopic(string Title, string Text);
 
-public record CloseTopic(int Id);
+public record CloseTopic;
 
 public record Reply(int Id, int ParentId, string Text);
 
