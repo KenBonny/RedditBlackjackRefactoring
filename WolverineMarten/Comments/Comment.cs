@@ -1,4 +1,5 @@
-﻿using Marten.Events.Aggregation;
+﻿using Marten.Events;
+using Marten.Events.Aggregation;
 
 namespace WolverineMarten.Comments;
 
@@ -25,14 +26,14 @@ public sealed class ThreadProjection : SingleStreamProjection<Thread>
             ]
         };
 
-    public static Thread Apply(Reply reply, Thread thread)
+    public static Thread Apply(IEvent<Reply> reply, Thread thread)
     {
         thread.Comments.Add(
             new()
             {
                 Id = thread.Comments.Count,
-                Text = reply.Text,
-                ParentId = reply.ParentId,
+                Text = reply.Data.Text,
+                ParentId = reply.Data.ParentId,
             });
         return thread;
     }
