@@ -42,6 +42,11 @@ builder.Services.AddWolverineHttp()
             // Does require new table migrations for Marten 7 users though
             options.Events.UseOptimizedProjectionRebuilds = true;
 
+            // Requires events to have explicitly declared stream types.
+            // This adds rigor to the definition of event streams, ensuring
+            // stream typing is properly enforced.
+            options.Events.UseMandatoryStreamTypeDeclaration = true;
+
             // If we're running in development mode, let Marten just take care
             // of all necessary schema building and patching behind the scenes
             if (builder.Environment.IsDevelopment())
