@@ -27,20 +27,20 @@ public static class StraightRollGame
             {
                 int rand = rng.Next(1, 7);
                 diceRoll.Add(rand);
+            }
 
-                for (int n = 0; n < 6; n++)
+            for (int n = 0; n < 6; n++)
+            {
+                bool rolledStraight = diceRoll.Contains(diceStraight[n]);
+                if (rolledStraight == true)
                 {
-                    bool rolledStraight = diceRoll.Contains(diceStraight[n]);
-                    if (rolledStraight == true)
-                    {
-                        straightCheck++;
-                        //Console.WriteLine($"i={i} n={n} Straight Check={straightCheck}");
-                    }
-                    else if (rolledStraight == false)
-                    {
-                        straightCheck = 0;
-                        Console.WriteLine("________RE-SET________");
-                    }
+                    straightCheck++;
+                    //Console.WriteLine($"i={i} n={n} Straight Check={straightCheck}");
+                }
+                else if (rolledStraight == false)
+                {
+                    straightCheck = 0;
+                    Console.WriteLine("________RE-SET________");
                 }
             }
 
