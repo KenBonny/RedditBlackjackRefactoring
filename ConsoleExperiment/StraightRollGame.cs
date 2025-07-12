@@ -22,12 +22,7 @@ public static class StraightRollGame
             int straightCheck = 0;
 
             Console.WriteLine("\n");
-            List<int> diceRoll = new List<int>(6);
-            for (int i = 0; i < 6; i++)
-            {
-                int rand = rng.Next(1, 7);
-                diceRoll.Add(rand);
-            }
+            var diceRoll = Enumerable.Range(1, 6).Select(_ => rng.Next(1, 7)).ToList();
 
             for (int n = 0; n < 6; n++)
             {
