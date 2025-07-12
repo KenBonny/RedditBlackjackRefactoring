@@ -19,20 +19,11 @@ public static class StraightRollGame
             if (Console.ReadKey().Key != ConsoleKey.R)
                 continue;
 
-            int straightCheck = 0;
-
             Console.WriteLine("\n");
             var diceRoll = Enumerable.Range(1, 6).Select(_ => rng.Next(1, 7)).ToList();
 
             var isStraight = diceStraight.All(diceRoll.Contains);
-            if (isStraight)
-            {
-                Console.WriteLine(">_>_>_STRAIGHT_<_<_<");
-            }
-            else
-            {
-                Console.WriteLine("________RE-SET________");
-            }
+            Console.WriteLine(isStraight ? ">_>_>_STRAIGHT_<_<_<" : "________RE-SET________");
 
             foreach (int number in diceRoll)
             {
