@@ -24,20 +24,6 @@ public static class StraightRollGame
             Console.WriteLine("\n");
             var diceRoll = Enumerable.Range(1, 6).Select(_ => rng.Next(1, 7)).ToList();
 
-            foreach (var number in diceStraight)
-            {
-                var rolledStraight = diceRoll.Contains(number);
-                if (rolledStraight)
-                {
-                    straightCheck++;
-                    //Console.WriteLine($"i={i} n={n} Straight Check={straightCheck}");
-                }
-                else
-                {
-                    straightCheck = 0;
-                    Console.WriteLine("________RE-SET________");
-                }
-            }
             var isStraight = diceStraight.All(diceRoll.Contains);
             if (isStraight)
             {
