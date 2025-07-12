@@ -24,9 +24,9 @@ public static class StraightRollGame
             Console.WriteLine("\n");
             var diceRoll = Enumerable.Range(1, 6).Select(_ => rng.Next(1, 7)).ToList();
 
-            for (int n = 0; n < 6; n++)
+            foreach (var number in diceStraight)
             {
-                bool rolledStraight = diceRoll.Contains(diceStraight[n]);
+                var rolledStraight = diceRoll.Contains(number);
                 if (rolledStraight)
                 {
                     straightCheck++;
