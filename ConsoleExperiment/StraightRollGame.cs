@@ -4,6 +4,9 @@ public static class StraightRollGame
 {
     public static void Play()
     {
+        var rng = Random.Shared;
+        List<int> diceStraight = [1, 2, 3, 4, 5, 6];
+
         do
         {
             // While R key is true, loop through 6 iterations of a random number gen. Each RNG
@@ -15,17 +18,7 @@ public static class StraightRollGame
             Console.WriteLine("Press R to roll...\n");
             ConsoleKeyInfo rollKey = Console.ReadKey();
 
-            Random RNG = new Random();
             int straightCheck = 0;
-            List<int> diceStraight = new List<int>
-            {
-                1,
-                2,
-                3,
-                4,
-                5,
-                6
-            };
             List<int> diceRoll = new List<int>(6);
             switch (rollKey.Key)
             {
@@ -33,7 +26,7 @@ public static class StraightRollGame
                     Console.WriteLine("\n");
                     for (int i = 0; i < 6; i++)
                     {
-                        int rand = RNG.Next(1, 7);
+                        int rand = rng.Next(1, 7);
                         diceRoll.Add(rand);
 
                         for (int n = 0; n < 6; n++)
