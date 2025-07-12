@@ -16,12 +16,11 @@ public static class StraightRollGame
             // else straightCheck is nullified for that loop. If the tally reaches or exceeds 6,
             // the user has a straight.
             Console.WriteLine("Press R to roll...\n");
-            ConsoleKeyInfo rollKey = Console.ReadKey();
+            if (Console.ReadKey().Key != ConsoleKey.R)
+                continue;
 
             int straightCheck = 0;
             List<int> diceRoll = new List<int>(6);
-            if (rollKey.Key != ConsoleKey.R)
-                continue;
 
             Console.WriteLine("\n");
             for (int i = 0; i < 6; i++)
