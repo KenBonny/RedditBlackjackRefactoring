@@ -38,10 +38,14 @@ public static class StraightRollGame
                     Console.WriteLine("________RE-SET________");
                 }
             }
-
-            if (straightCheck >= 6)
+            var isStraight = diceStraight.All(diceRoll.Contains);
+            if (isStraight)
             {
                 Console.WriteLine(">_>_>_STRAIGHT_<_<_<");
+            }
+            else
+            {
+                Console.WriteLine("________RE-SET________");
             }
 
             foreach (int number in diceRoll)
