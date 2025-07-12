@@ -20,9 +20,9 @@ public static class StraightRollGame
                 continue;
 
             int straightCheck = 0;
-            List<int> diceRoll = new List<int>(6);
 
             Console.WriteLine("\n");
+            List<int> diceRoll = new List<int>(6);
             for (int i = 0; i < 6; i++)
             {
                 int rand = rng.Next(1, 7);
