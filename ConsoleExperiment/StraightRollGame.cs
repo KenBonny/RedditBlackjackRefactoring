@@ -27,12 +27,12 @@ public static class StraightRollGame
             for (int n = 0; n < 6; n++)
             {
                 bool rolledStraight = diceRoll.Contains(diceStraight[n]);
-                if (rolledStraight == true)
+                if (rolledStraight)
                 {
                     straightCheck++;
                     //Console.WriteLine($"i={i} n={n} Straight Check={straightCheck}");
                 }
-                else if (rolledStraight == false)
+                else
                 {
                     straightCheck = 0;
                     Console.WriteLine("________RE-SET________");
