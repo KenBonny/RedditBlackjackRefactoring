@@ -20,39 +20,39 @@ public static class StraightRollGame
 
             int straightCheck = 0;
             List<int> diceRoll = new List<int>(6);
-            if (rollKey.Key == ConsoleKey.R)
-            {
-                Console.WriteLine("\n");
-                for (int i = 0; i < 6; i++)
-                {
-                    int rand = rng.Next(1, 7);
-                    diceRoll.Add(rand);
+            if (rollKey.Key != ConsoleKey.R)
+                continue;
 
-                    for (int n = 0; n < 6; n++)
+            Console.WriteLine("\n");
+            for (int i = 0; i < 6; i++)
+            {
+                int rand = rng.Next(1, 7);
+                diceRoll.Add(rand);
+
+                for (int n = 0; n < 6; n++)
+                {
+                    bool rolledStraight = diceRoll.Contains(diceStraight[n]);
+                    if (rolledStraight == true)
                     {
-                        bool rolledStraight = diceRoll.Contains(diceStraight[n]);
-                        if (rolledStraight == true)
-                        {
-                            straightCheck++;
-                            //Console.WriteLine($"i={i} n={n} Straight Check={straightCheck}");
-                        }
-                        else if (rolledStraight == false)
-                        {
-                            straightCheck = 0;
-                            Console.WriteLine("________RE-SET________");
-                        }
+                        straightCheck++;
+                        //Console.WriteLine($"i={i} n={n} Straight Check={straightCheck}");
+                    }
+                    else if (rolledStraight == false)
+                    {
+                        straightCheck = 0;
+                        Console.WriteLine("________RE-SET________");
                     }
                 }
+            }
 
-                if (straightCheck >= 6)
-                {
-                    Console.WriteLine(">_>_>_STRAIGHT_<_<_<");
-                }
+            if (straightCheck >= 6)
+            {
+                Console.WriteLine(">_>_>_STRAIGHT_<_<_<");
+            }
 
-                foreach (int number in diceRoll)
-                {
-                    Console.WriteLine($" dice: {number}");
-                }
+            foreach (int number in diceRoll)
+            {
+                Console.WriteLine($" dice: {number}");
             }
         } while (true);
     }
